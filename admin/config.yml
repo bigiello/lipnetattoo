@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: 'images/uploads'
+public_folder: '/images/uploads'
+
+collections:
+  - name: 'tattoos'
+    label: 'Tatuaże'
+    folder: '_tattoos'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Tytuł', name: 'title', widget: 'string' }
+      - { label: 'Obraz', name: 'image', widget: 'image' }
+      - { label: 'Opis', name: 'description', widget: 'text' }
