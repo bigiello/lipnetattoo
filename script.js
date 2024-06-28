@@ -22,7 +22,7 @@ async function displayTattoos() {
 		const container = document.getElementById('gallery-container');
 		if (container) {
 			container.innerHTML =
-				'<p class="text-center text-red-500">Przepraszamy, nie udało się załadować galerii tatuaży. Prosimy spróbować później.</p>';
+				'<p class="text-center text-red-500">Sorry, gallery is not working! Please try again later. </p>';
 		}
 	}
 }
