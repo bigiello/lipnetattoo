@@ -3,7 +3,8 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const tattoosDirectory = path.join(process.cwd(), '_tattoos');
-const outputFile = path.join(process.cwd(), 'public', '_tattoos', 'index.json');
+const outputDir = path.join(process.cwd(), 'public', '_tattoos');
+const outputFile = path.join(outputDir, 'index.json');
 
 function getTattoos() {
 	const fileNames = fs.readdirSync(tattoosDirectory);
@@ -18,6 +19,11 @@ function getTattoos() {
 		};
 	});
 	return tattoos;
+}
+
+// Ensure the output directory exists
+if (!fs.existsSync(outputDir)) {
+	fs.mkdirSync(outputDir, { recursive: true });
 }
 
 const tattoos = getTattoos();
