@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const tattoosDirectory = path.join(process.cwd(), '_tattoos');
-const outputDir = path.join(process.cwd(), 'public', '_tattoos');
+const outputDir = path.join(process.cwd(), '_tattoos');
 const outputFile = path.join(outputDir, 'index.json');
 
 function getTattoos() {
@@ -29,3 +29,9 @@ if (!fs.existsSync(outputDir)) {
 const tattoos = getTattoos();
 fs.writeFileSync(outputFile, JSON.stringify(tattoos, null, 2));
 console.log('Tattoos JSON file generated successfully!');
+
+console.log('Current working directory:', process.cwd());
+console.log('Tattoos directory:', tattoosDirectory);
+console.log('Output directory:', outputDir);
+console.log('Output file:', outputFile);
+console.log('Tattoo files found:', fs.readdirSync(tattoosDirectory));
