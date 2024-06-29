@@ -14,7 +14,7 @@ function getTattoos() {
 		const { data } = matter(fileContents);
 		return {
 			title: data.title,
-			image: data.image,
+			image: data.image.startsWith('/') ? data.image : `/${data.image}`,
 			description: data.description,
 		};
 	});
@@ -27,5 +27,5 @@ if (!fs.existsSync(outputDir)) {
 }
 
 const tattoos = getTattoos();
-fs.writeFileSync(outputFile, JSON.stringify(tattoos));
+fs.writeFileSync(outputFile, JSON.stringify(tattoos, null, 2));
 console.log('Tattoos JSON file generated successfully!');

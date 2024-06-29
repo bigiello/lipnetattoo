@@ -1,4 +1,4 @@
-// Funkcja do pobrania i wyświetlenia tatuaży
+// Function to fetch and display tattoos
 async function displayTattoos() {
 	try {
 		const response = await fetch('/_tattoos/index.json');
@@ -18,11 +18,11 @@ async function displayTattoos() {
 			});
 		}
 	} catch (error) {
-		console.error('Błąd podczas ładowania tatuaży:', error);
+		console.error('Error loading tattoos:', error);
 		const container = document.getElementById('gallery-container');
 		if (container) {
 			container.innerHTML =
-				'<p class="text-center text-red-500">Sorry, gallery is not working! Please try again later. </p>';
+				'<p class="text-center text-red-500">Sorry, gallery is not working! Please try again later.</p>';
 		}
 	}
 }
@@ -84,7 +84,7 @@ const scrollAnimObserver = new IntersectionObserver(
 
 scrollAnimElements.forEach(el => scrollAnimObserver.observe(el));
 
-// Sprawdź, czy użytkownik jest zalogowany do CMS
+// Check if user is logged into CMS
 if (window.netlifyIdentity) {
 	window.netlifyIdentity.on('init', user => {
 		if (!user) {
@@ -95,9 +95,5 @@ if (window.netlifyIdentity) {
 	});
 }
 
-// Wywołaj funkcję displayTattoos po załadowaniu strony, ale tylko jeśli jesteśmy na stronie flashes
-document.addEventListener('DOMContentLoaded', () => {
-	if (document.getElementById('gallery-container')) {
-		displayTattoos();
-	}
-});
+// Call displayTattoos function when the DOM is loaded
+document.addEventListener('DOMContentLoaded', displayTattoos);
