@@ -66,6 +66,27 @@ textarea {
 	background-color: var(--primary-color);
 }
 
+/* Sticky navbar styles */
+header {
+	transition: transform 0.3s ease;
+}
+
+.navbar-hidden {
+	transform: translateY(-100%);
+}
+
+/* Adjust main content to account for fixed header */
+main {
+	padding-top: 4rem; /* Adjust this value based on your navbar height */
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+	#menu {
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	}
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.container {
