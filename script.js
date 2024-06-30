@@ -1,57 +1,39 @@
 // Function to fetch and display tattoos
 async function displayTattoos() {
-	// ... (keep the existing function as is)
-}
+	try {
+		const response = await fetch('/_tattoos/index.json');
+		const tattoos = await response.json();
+		const container = document.getElementById('gallery-container');
 
-// Sticky navbar functionality
-let lastScrollTop = 0;
-const navbar = document.querySelector('header');
-const menu = document.getElementById('menu');
-const scrollThreshold = 50;
-
-function hideNavbarAndMenu() {
-	navbar.classList.add('navbar-hidden');
-	if (menu && window.innerWidth < 768) {
-		// Check if it's mobile view
-		menu.classList.add('hidden');
-		document.body.classList.remove('menu-open');
+		if (container) {
+			tattoos.forEach(tattoo => {
+				const tattooElement = document.createElement('div');
+				tattooElement.className = 'bg-white p-6 rounded shadow-md';
+				tattooElement.innerHTML = `
+                    <img src="${tattoo.image}" alt="${tattoo.title}" class="w-full h-48 object-cover mb-4 rounded">
+                    <h3 class="text-xl font-bold mb-2 text-secondary">${tattoo.title}</h3>
+                    <p class="text-gray-600">${tattoo.description}</p>
+                `;
+				container.appendChild(tattooElement);
+			});
+		}
+	} catch (error) {
+		console.error('Error loading tattoos:', error);
+		const container = document.getElementById('gallery-container');
+		if (container) {
+			container.innerHTML =
+				'<p class="text-center text-red-500">Sorry, gallery is not working! Please try again later.</p>';
+		}
 	}
 }
 
-function showNavbar() {
-	navbar.classList.remove('navbar-hidden');
-}
-
-window.addEventListener('scroll', () => {
-	let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-	if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
-		// Scrolling down
-		hideNavbarAndMenu();
-	} else {
-		// Scrolling up
-		showNavbar();
-	}
-
-	lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-
-// Improved mobile menu toggle
+// Mobile menu toggle
 const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
 
 if (menuToggle && menu) {
-	menuToggle.addEventListener('click', e => {
-		e.stopPropagation(); // Prevent this click from being caught by the document click listener
+	menuToggle.addEventListener('click', () => {
 		menu.classList.toggle('hidden');
-		document.body.classList.toggle('menu-open');
-	});
-
-	// Close menu when clicking outside
-	document.addEventListener('click', e => {
-		if (!menu.contains(e.target) && !menuToggle.contains(e.target) && !menu.classList.contains('hidden')) {
-			menu.classList.add('hidden');
-			document.body.classList.remove('menu-open');
-		}
 	});
 }
 
@@ -69,20 +51,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 	anchor.addEventListener('click', function (e) {
 		e.preventDefault();
 
-		const targetId = this.getAttribute('href').substring(1);
-		const targetElement = document.getElementById(targetId);
-
-		if (targetElement) {
-			targetElement.scrollIntoView({
-				behavior: 'smooth',
-			});
-
-			// Close the mobile menu after clicking a link
-			if (menu && window.innerWidth < 768) {
-				menu.classList.add('hidden');
-				document.body.classList.remove('menu-open');
-			}
-		}
+		document.querySelector(this.getAttribute('href')).scrollIntoView({
+			behavior: 'smooth',
+		});
 	});
 });
 
