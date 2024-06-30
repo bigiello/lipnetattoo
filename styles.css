@@ -5,6 +5,10 @@
 	--secondary-color: #000000;
 	--accent-color: #f0f0f0;
 	--text-color: #333333;
+	--divider-color: #e0e0e0;
+	--underline-color-1: #ff3366;
+	--underline-color-2: #33ccff;
+	--underline-color-3: #ffcc00;
 }
 
 body {
@@ -33,43 +37,330 @@ body {
 	background-color: var(--accent-color);
 }
 
-/* Scroll animation styles */
-.scroll-anim {
-	opacity: 0;
-	transform: translateY(50px);
-	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Vibrant animated underline */
+.animated-underline {
+	position: relative;
+	display: inline-block;
+	padding: 0 10px;
 }
 
-.scroll-anim-visible {
+.animated-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -15px;
+	width: calc(100% + 20px);
+	height: 8px;
+	background: linear-gradient(
+		45deg,
+		var(--underline-color-1),
+		var(--underline-color-2),
+		var(--underline-color-3),
+		var(--underline-color-1)
+	);
+	background-size: 300% 300%;
+	animation: gradientShift 4s ease infinite;
+	transform: skew(-30deg);
+	clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+}
+
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.animated-underline {
+	animation: popIn 0.5s ease-out 1s forwards;
+	opacity: 0;
+	transform: scale(0.8);
+}
+
+@keyframes popIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	80% {
+		transform: scale(1.1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+	width: 30px;
+	height: 20px;
+	position: relative;
+	cursor: pointer;
+	z-index: 900;
+}
+
+.hamburger span {
+	display: block;
+	position: absolute;
+	height: 3px;
+	width: 100%;
+	background: var(--secondary-color);
+	border-radius: 3px;
 	opacity: 1;
-	transform: translateY(0);
+	left: 0;
+	transform: rotate(0deg);
+	transition: 0.25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+	top: 0px;
+}
+
+.hamburger span:nth-child(2),
+.hamburger span:nth-child(3) {
+	top: 10px;
+}
+
+.hamburger span:nth-child(4) {
+	top: 20px;
+}
+
+.hamburger.open span:nth-child(1) {
+	top: 10px;
+	width: 0%;
+	left: 50%;
+}
+
+.hamburger.open span:nth-child(2) {
+	transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(3) {
+	transform: rotate(-45deg);
+}
+
+.hamburger.open span:nth-child(4) {
+	top: 10px;
+	width: 0%;
+	left: 50%;
+}
+
+/* Full-screen Menu Styles */
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out;
+	z-index: 1000;
+}
+
+#menu.open {
+	opacity: 1;
+	visibility: visible;
+}
+
+#menu ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+#menu ul li {
+	margin: 20px 0;
+}
+
+#menu ul li a {
+	font-size: 24px;
+	color: var(--primary-color);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+#menu ul li a:hover {
+	color: var(--underline-color-1);
+}
+
+/* Section styling with dividers */
+section {
+	position: relative;
+	margin-bottom: 60px;
+	padding-bottom: 60px;
+}
+
+section::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 1200px;
+	height: 1px;
+	background-color: var(--divider-color);
+}
+
+/* Remove divider from the last section */
+section:last-of-type::after {
+	display: none;
+}
+
+/* Adjust spacing for sections */
+#home {
+	padding-top: 120px;
+	padding-bottom: 60px;
+}
+
+#portfolio,
+#shop,
+#booking {
+	padding-top: 60px;
 }
 
 /* Custom button styles */
 .btn {
 	background-color: var(--secondary-color);
 	color: var(--primary-color);
-	padding: 0.5rem 1rem;
-	border-radius: 9999px;
+	padding: 12px 24px;
+	border-radius: 30px;
 	font-weight: bold;
-	transition: background-color 0.3s ease;
+	font-size: 18px;
+	transition: all 0.3s ease;
+	display: inline-block;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
 	background-color: var(--text-color);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Custom input styles */
 input,
 textarea {
-	border: 1px solid var(--text-color);
+	border: 2px solid var(--accent-color);
 	background-color: var(--primary-color);
+	transition: all 0.3s ease;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+input:focus,
+textarea:focus {
+	outline: none;
+	border-color: var(--secondary-color);
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
+	h1 {
+		font-size: 2.5rem;
+	}
+
+	h1 span {
+		font-size: 3rem;
+	}
+
 	.container {
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
+
+	section {
+		margin-bottom: 40px;
+		padding-bottom: 40px;
+	}
+
+	section::after {
+		width: 90%;
+	}
+
+	#home {
+		padding-top: 100px;
+		padding-bottom: 40px;
+	}
+
+	#portfolio,
+	#shop,
+	#booking {
+		padding-top: 40px;
+	}
+}
+
+/* Animation for hero text */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fadeInUp {
+	animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Hover effects for portfolio images */
+.portfolio-image {
+	transition: all 0.3s ease;
+}
+
+.portfolio-image:hover {
+	transform: scale(1.05);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved styling for section headings */
+h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+
+/* Enhanced shop item styling */
+.shop-item {
+	background-color: var(--primary-color);
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+.shop-item:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Improved form styling */
+form {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+form .btn {
+	width: 100%;
+	margin-top: 20px;
 }

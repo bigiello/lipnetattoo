@@ -7,52 +7,52 @@
     <title>LIPNETATTOO - tattoo artist, booking, merch</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="bg-primary text-primary">
-    <header class="bg-white shadow-md">
-        <nav class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center ">
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#home" class="text-2xl font-bold text-secondary">lipnetattoo</a>
-            <button id="menu-toggle" class="md:hidden text-secondary">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-            </button>
-            <div id="menu" class="hidden md:flex w-full md:w-auto mt-4 md:mt-0">
-                <a href="#home" class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Home</a>
-                <a href="#portfolio"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Portfolio</a>
-                <a href="#shop" class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Shop</a>
-                <a href="#booking"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Booking</a>
-                <a href="flashes.html"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Flashes</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
+
+    <div id="menu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="flashes.html">Flashes</a></li>
+        </ul>
+    </div>
+
     <main>
-        <!-- Hero Section -->
-        <section class="bg-white py-20 scroll-anim ">
+        <section id="home" class="pt-20 md:pt-32 pb-16 md:pb-24">
             <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-4xl font-bold mb-2 text-secondary">You're looking for
-                    <span class="text-5xl">GEORGE?</span>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-secondary">
+                    You're looking for
+                    <br>
+                    <span class=" text-5xl md:text-7xl inline-block mt-2">GEORGE?</span>
+                    <!-- animated-underline -->
                 </h1>
-                <p class="text-lg md:text-xl mb-8">You're in good place, my friend.</p>
+                <p class="text-lg md:text-xl mb-8">You're in the right place, my friend.</p>
                 <a href="#booking" class="btn">Book Now</a>
             </div>
         </section>
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20 scroll-anim">
+
+        <section id="portfolio" class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-secondary">Our Portfolio</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-secondary">Our Portfolio</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <img src="./images/tattoo1.jpg" alt="Tattoo 1" class="w-full h-64 object-cover rounded shadow-md">
                     <img src="/api/placeholder/400/400" alt="Tattoo 2"
                         class="w-full h-64 object-cover rounded shadow-md">
@@ -68,46 +68,30 @@
             </div>
         </section>
 
-        <!-- Shop Section -->
-        <section id="shop" class="bg-accent py-20 scroll-anim">
+        <section id="shop" class="bg-accent py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-secondary">Shop</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-secondary">Shop</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="https://lipnetattoo.bigcartel.com/product/not-a-fan-of-living-art-print">
+                    <a href="https://lipnetattoo.bigcartel.com/product/not-a-fan-of-living-art-print" class="block">
                         <div class="bg-white p-6 rounded shadow-md">
-                            <img src=" ./images/product1.png" alt="Product 1"
+                            <img src="./images/product1.png" alt="Product 1"
                                 class="w-full h-48 object-cover mb-4 rounded">
                             <h3 class="text-xl font-bold mb-2 text-secondary">NOT A FAN OF LIVING ART PRINT</h3>
                             <p class="text-gray-600 mb-4">High quality 250g paper, digital print</p>
                             <p class="text-xl font-bold text-secondary">€18.00 - €30.00</p>
                         </div>
                     </a>
-                    <div class="bg-white p-6 rounded shadow-md">
-                        <img src="/api/placeholder/300/200" alt="Product 2"
-                            class="w-full h-48 object-cover mb-4 rounded">
-                        <h3 class="text-xl font-bold mb-2 text-secondary">Gift Card</h3>
-                        <p class="text-gray-600 mb-4">Perfect gift for tattoo enthusiasts</p>
-                        <p class="text-xl font-bold text-secondary">$50.00</p>
-                    </div>
-                    <div class="bg-white p-6 rounded shadow-md">
-                        <img src="/api/placeholder/300/200" alt="Product 3"
-                            class="w-full h-48 object-cover mb-4 rounded">
-                        <h3 class="text-xl font-bold mb-2 text-secondary">Custom Design</h3>
-                        <p class="text-gray-600 mb-4">Personalized tattoo design service</p>
-                        <p class="text-xl font-bold text-secondary">$99.99</p>
-                    </div>
                 </div>
-                <div class="text-center mt-12">
+                <div class="text-center mt-8">
                     <a href="https://lipnetattoo.bigcartel.com/" target="_blank" rel="noopener noreferrer"
                         class="btn">See More</a>
                 </div>
             </div>
         </section>
 
-        <!-- Booking Section -->
-        <section id="booking" class="py-20 scroll-anim">
+        <section id="booking" class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-secondary">Book Your Appointment</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-secondary">Book Your Appointment</h2>
                 <form class="max-w-lg mx-auto">
                     <div class="mb-4">
                         <label for="name" class="block mb-2 text-secondary">Name</label>

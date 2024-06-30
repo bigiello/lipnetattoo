@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIPNETATTOO - tattoo artist, booking, merch</title>
+    <title>LIPNETATTOO - Flashes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,29 +15,27 @@
 </head>
 
 <body class="bg-primary text-primary">
-    <header class="bg-white shadow-md">
-        <nav class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-secondary">LIPNETATTOO</a>
-            <button id="menu-toggle" class="md:hidden text-secondary">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-            </button>
-            <div id="menu" class="hidden md:flex w-full md:w-auto mt-4 md:mt-0">
-                <a href="index.html" class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Home</a>
-                <a href="index.html#portfolio"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Portfolio</a>
-                <a href="index.html#shop"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Shop</a>
-                <a href="index.html#booking"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Booking</a>
-                <a href="flashes.html"
-                    class="block md:inline-block px-3 py-2 text-secondary hover:text-gray-600">Flashes</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
+
+    <div id="menu">
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#shop">Shop</a></li>
+            <li><a href="index.html#booking">Booking</a></li>
+            <li><a href="flashes.html">Flashes</a></li>
+        </ul>
+    </div>
 
     <main>
         <section id="tattoo-gallery" class="py-20 scroll-anim">
