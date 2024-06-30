@@ -57,16 +57,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 	});
 });
 
-// Add to cart functionality (only for "Add to Cart" buttons)
-const addToCartButtons = document.querySelectorAll('button:not([type="submit"])');
-addToCartButtons.forEach(button => {
-	button.addEventListener('click', e => {
-		if (e.target.textContent.trim().toLowerCase() === 'add to cart') {
-			alert('Item added to cart!');
-		}
-	});
-});
-
 // Scroll animation
 const scrollAnimElements = document.querySelectorAll('.scroll-anim');
 
